@@ -1,2 +1,8 @@
 [server]
 pythonVersion = "3.11"
+
+[server]
+maxUploadSize = 300
+
+[runner]
+fastReruns = false
