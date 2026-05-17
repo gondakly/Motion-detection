@@ -86,11 +86,26 @@ if reset_btn:
 
 # ====================== MAIN PROCESSING ======================
 if st.session_state.running:
-    # Video Source
+    # ====================== VIDEO SOURCE (FIXED) ======================
     if uploaded_file is not None:
         tfile = tempfile.NamedTemporaryFile(delete=False, suffix='.mp4')
         tfile.write(uploaded_file.getvalue())
+        tfile.flush()           # Important
+        tfile.close()           # Important for deployment
+        
         video_source = tfile.name
+        
+        # Store in session state for better handling across reruns
+        if 'current_video_path' not in st.session_state:
+            st.session_state.current_video_path = video_source
+        elif st.session_state.current_video_path != video_source:
+            # Clean old file
+            try:
+                if os.path.exists(st.session_state.current_video_path):
+                    os.unlink(st.session_state.current_video_path)
+            except:
+                pass
+            st.session_state.current_video_path = video_source
     else:
         video_source = r"D:/Final Project Computer Vision/Traffic Motion.mp4"
 
@@ -211,13 +226,16 @@ if st.session_state.running:
         active_st.metric("Active Objects", len(tracked_objects))
         fps_st.metric("FPS", round(fps, 1))
 
-        # Small delay to prevent Streamlit media cache crash
+        # Small delay
         time.sleep(0.01)
 
     cap.release()
-    if uploaded_file is not None and 'tfile' in locals():
+
+    # ====================== CLEANUP (FIXED) ======================
+    if uploaded_file is not None and 'current_video_path' in st.session_state:
         try:
-            os.unlink(tfile.name)
+            if os.path.exists(st.session_state.current_video_path):
+                os.unlink(st.session_state.current_video_path)
         except:
             pass
 
