@@ -1,4 +1,4 @@
 streamlit
 opencv-python-headless
 numpy
-# Add any other packages your app uses
+ultralytics
