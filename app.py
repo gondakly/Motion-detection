@@ -7,7 +7,7 @@ from ultralytics import YOLO
 import tempfile
 import os
 
-# ========================= CONFIGURATION =========================
+# CONFIGURATION 
 RESIZE_W = 800
 RESIZE_H = 600
 
@@ -15,7 +15,7 @@ st.set_page_config(page_title="Smart Traffic Surveillance", layout="wide", page_
 st.title("Smart YOLO Traffic Surveillance System")
 st.markdown("**Real-time Vehicle Detection, Tracking & Counting**")
 
-# ====================== SIDEBAR ======================
+#SIDEBAR
 with st.sidebar:
     st.header("Control Panel")
    
@@ -37,7 +37,7 @@ with st.sidebar:
     with col3:
         reset_btn = st.button("Reset Counters", use_container_width=True)
 
-# ====================== LAYOUT ======================
+#LAYOUT
 col_video, col_stats = st.columns([3, 1])
 
 with col_video:
@@ -53,14 +53,14 @@ with col_stats:
     active_st = st.metric("Active Objects", 0)
     fps_st = st.metric("FPS", 0)
 
-# ====================== MODEL ======================
+#MODEL
 @st.cache_resource
 def load_model():
     return YOLO("yolov8n.pt")
 
 model = load_model()
 
-# ====================== SESSION STATE ======================
+# SESSION STATE
 if 'running' not in st.session_state:
     st.session_state.running = False
     st.session_state.count_in = 0
@@ -69,7 +69,7 @@ if 'running' not in st.session_state:
     st.session_state.tracked_objects = {}
     st.session_state.object_id_counter = 0
 
-# ====================== BUTTONS ======================
+# BUTTONS
 if start_btn:
     st.session_state.running = True
 
@@ -84,9 +84,9 @@ if reset_btn:
     st.session_state.object_id_counter = 0
     st.rerun()
 
-# ====================== MAIN PROCESSING ======================
+# MAIN PROCESSING
 if st.session_state.running:
-    # ====================== VIDEO SOURCE (FIXED) ======================
+    #VIDEO SOURCE
     if uploaded_file is not None:
         tfile = tempfile.NamedTemporaryFile(delete=False, suffix='.mp4')
         tfile.write(uploaded_file.getvalue())
@@ -230,8 +230,6 @@ if st.session_state.running:
         time.sleep(0.01)
 
     cap.release()
-
-    # ====================== CLEANUP (FIXED) ======================
     if uploaded_file is not None and 'current_video_path' in st.session_state:
         try:
             if os.path.exists(st.session_state.current_video_path):
