@@ -33,7 +33,7 @@ A real-time intelligent traffic monitoring system built with **YOLOv8**, **OpenC
 ## Installation & Running (Manual)
 
 ### 1. Clone the Repository
-git clone https://github.com/yourusername/smart-traffic-surveillance.git
-cd smart-traffic-surveillance
+git clone https://github.com/gondakly/Motion-detection
+cd Motion-detection
 run in cmd :
 Streamlit run "Path of the file on your device"
