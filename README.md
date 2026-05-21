@@ -21,7 +21,7 @@ A real-time intelligent traffic monitoring system built with **YOLOv8**, **OpenC
 4. **Visualization**: Bounding boxes, class labels, tracking IDs, and motion trails are drawn on the frame.
 5. **Statistics**: Real-time metrics are updated in the dashboard.
 
-## 🛠 Technologies Used
+## Technologies Used
 
 - **Streamlit** - Web Interface
 - **Ultralytics YOLOv8** - Object Detection & Tracking
@@ -33,5 +33,5 @@ A real-time intelligent traffic monitoring system built with **YOLOv8**, **OpenC
 ## Installation & Running (Manual)
 
 ### 1. Clone the Repository
-git clone https://github.com/gondakly/Motion-detection, then 
+git clone https://github.com/gondakly/Motion-detection , then 
 Run Command: Streamlit run "Path of the file on your device"
