@@ -34,6 +34,5 @@ A real-time intelligent traffic monitoring system built with **YOLOv8**, **OpenC
 
 ### 1. Clone the Repository
 git clone https://github.com/gondakly/Motion-detection
-\n cd Motion-detection
-\n run in cmd :
+**Run Command**
 Streamlit run "Path of the file on your device"
